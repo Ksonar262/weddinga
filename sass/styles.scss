@@ -910,67 +910,126 @@ Google map
 RSVP form
 ========================================================================== */
 .rsvp {
-  padding-bottom: 140px;
+  padding: 60px 20px 140px;
+  background-color: #fef7f4;
+
+  h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: #a0522d;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  p {
+    font-size: 16px;
+    color: #5a5a5a;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
   .rsvp-form {
+    max-width: 600px;
+    margin: 0 auto;
+
     .rsvp-btn {
       padding: 15px 0;
-      border-radius: 3px;
+      border-radius: 25px;
       width: 100%;
-      font-size: 13px;
+      font-size: 15px;
+      font-weight: bold;
+      background-color: #a0522d;
+      color: white;
+      border: none;
+      transition: background-color 0.3s ease-in-out;
+
+      &:hover {
+        background-color: darken(#a0522d, 10%);
+        cursor: pointer;
+      }
     }
+
     .form-input-group {
       width: 100%;
       height: 55px;
-      margin: 0 auto 10px;
-      -moz-border-radius: 5px;
-      -webkit-border-radius: 5px;
-      border-radius: 5px;
+      margin: 0 auto 20px;
+      border-radius: 6px;
       border: solid 1px $keyline-color;
-      text-align: left;
+      background: white;
       position: relative;
+      transition: border 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+
+      &.invalid {
+        border: 2px solid red;
+      }
+
+      &:focus-within {
+        border-color: $accent-color;
+        box-shadow: 0 0 5px rgba($accent-color, 0.3);
+      }
 
       i {
         color: $accent-color;
         font-size: 14px;
+
+        &:after {
+          content: "";
+          height: 30px;
+          width: 1px;
+          border-right: solid 1px $keyline-color;
+          position: absolute;
+          top: 50%;
+          left: 30px;
+          transform: translateY(-50%);
+        }
+
+        &.fa-user,
+        &.fa-users,
+        &.fa-envelope,
+        &.fa-key {
+          font-size: 14px;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          margin-left: 20px;
+        }
       }
-      i:after {
-        content: "";
-        height: 30px;
-        width: 1px;
-        border-right: solid 1px $keyline-color;
-        position: absolute;
-        top: 50%;
-        left: 30px;
-        transform: translateY(-50%);
-      }
-      i.fa-user, i.fa-users, i.fa-envelope, .fa-key {
-        font-size: 14px;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        margin-left: 20px;
-      }
-      input {
+
+      input,
+      select {
         padding-left: 68px;
         width: 100%;
         height: 100%;
-        -moz-border-radius: 6px;
-        -webkit-border-radius: 6px;
         border-radius: 6px;
         border: none;
+        background: transparent;
+        font-size: 15px;
+        color: #333;
+
+        &::placeholder {
+          color: $form-placeholder;
+          opacity: 0.7;
+        }
+
+        &:focus {
+          outline: none;
+        }
       }
-      input::-webkit-input-placeholder {
-        color: $form-placeholder;
-      }
-      input:-moz-placeholder {
-        color: $form-placeholder;
-      }
-      input::-moz-placeholder {
-        color: $form-placeholder;
-      }
-      input:-ms-input-placeholder {
-        color: $form-placeholder;
-      }
+    }
+
+    .guest-block {
+      padding: 15px;
+      border: 1px solid lighten($keyline-color, 20%);
+      background: #fff8f6;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .aadhaar-error {
+      color: red;
+      font-size: 13px;
+      margin-top: -10px;
+      margin-bottom: 10px;
     }
   }
 }

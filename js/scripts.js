@@ -207,39 +207,55 @@ $(document).ready(function () {
     $('#add-to-cal').html(myCalendar);
 
 
+// RSVP form submission
 $('#rsvp-form').on('submit', function (e) {
     e.preventDefault();
-    
-    var inviteCodeInput = $('#invite_code').val();
-    console.log("JS Log: 1. Raw Input Invite Code:", inviteCodeInput); // What did the user type?
 
-    // Trim whitespace from the input before sending
+    var inviteCodeInput = $('#invite_code').val();
+    console.log("JS Log: 1. Raw Input Invite Code:", inviteCodeInput);
+
     var trimmedInviteCode = inviteCodeInput.trim();
     console.log("JS Log: 2. Trimmed Input Invite Code:", trimmedInviteCode);
 
-    // Create a FormData object to easily see what's being sent
-    var formData = new FormData(this); // 'this' refers to the form element
-    formData.set('invite_code', trimmedInviteCode); // Ensure the trimmed code is set
+    var formData = new FormData(this);
+    formData.set('invite_code', trimmedInviteCode);
 
-    // For debugging, convert FormData to a plain object to log
     var formDataObject = {};
-    formData.forEach(function(value, key){
+    formData.forEach(function (value, key) {
         formDataObject[key] = value;
     });
     console.log("JS Log: 3. Data being sent to Apps Script:", formDataObject);
 
+    // Aadhaar validation block
+    if ($('#guest-details-section').is(':visible')) {
+        var allValid = true;
+        $('input[name^="guest_"][name$="_aadhaar"]').each(function () {
+            var aadhaar = $(this).val().trim();
+            if (!isValidAadhaar(aadhaar)) {
+                allValid = false;
+                $(this).addClass('is-invalid');
+                alert("Please enter a valid 12-digit Aadhaar number for each guest.");
+            return false;
+            } else {
+                $(this).removeClass('is-invalid');
+            }
+        });
+
+    if (!allValid) {
+        return; // Prevent form from submitting
+    }
+}
+
 
     $('#alert-wrapper').html(alert_markup('info', '<strong>Just a sec!</strong> We are saving your details.'));
 
-    // Send data to Google Apps Script for validation and saving
-    // Note: $.post with FormData requires processData: false and contentType: false
     $.ajax({
         url: 'https://script.google.com/macros/s/AKfycbyOj6igxCzFWGQFyky4xhXHC98Dy3ZJwFLcUYSph0vau1u1YHr5Df1Ub5cD7PKuE96q/exec',
         type: 'POST',
         data: formData,
-        processData: false, // Important for FormData
-        contentType: false, // Important for FormData
-        success: function(data) {
+        processData: false,
+        contentType: false,
+        success: function (data) {
             console.log("JS Log: 4. Response from Google Apps Script:", data);
             if (data.result === "error") {
                 $('#alert-wrapper').html(alert_markup('danger', data.message));
@@ -248,12 +264,64 @@ $('#rsvp-form').on('submit', function (e) {
                 $('#rsvp-modal').modal('show');
             }
         },
-        error: function(jqXHR, textStatus, errorThrown) {
+        error: function (jqXHR, textStatus, errorThrown) {
             console.error("JS Log: AJAX Error:", textStatus, errorThrown, jqXHR);
-            $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> There is some issue with the server. '));
+            $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> There is some issue with the server.'));
         }
     });
 });
+
+function isValidAadhaar(aadhaar) {
+    var aadhaarPattern = /^[0-9]{12}$/;
+    return aadhaarPattern.test(aadhaar);
+}
+
+
+// Generate guest detail fields
+function generateGuestDetailFields(count) {
+    var container = $('#guest-details-container');
+    container.empty();
+
+    for (var i = 1; i <= count; i++) {
+        container.append(
+            '<div class="guest-block" style="border:1px solid #ccc; padding:10px; margin-bottom:10px;">' +
+                '<h5>Guest ' + i + '</h5>' +
+                '<input type="text" name="guest_' + i + '_name" placeholder="Full Name" class="form-control" required />' +
+                '<input type="number" name="guest_' + i + '_age" placeholder="Age" class="form-control" required />' +
+                '<select name="guest_' + i + '_gender" class="form-control" required>' +
+                    '<option value="">Select Gender</option>' +
+                    '<option value="Male">Male</option>' +
+                    '<option value="Female">Female</option>' +
+                    '<option value="Other">Other</option>' +
+                '</select>' +
+                '<input type="text" name="guest_' + i + '_aadhaar" placeholder="Aadhaar Number" class="form-control" required />' +
+            '</div>'
+        );
+    }
+}
+
+// Show/hide guest detail section based on checkboxes
+$('#stay-checkbox, #travel-checkbox').on('change', function () {
+    var show = $('#stay-checkbox').is(':checked') || $('#travel-checkbox').is(':checked');
+    var guestCount = parseInt($('input[name="extras"]').val(), 10) || 1;
+
+    if (show) {
+        $('#guest-details-section').show();
+        generateGuestDetailFields(guestCount);
+    } else {
+        $('#guest-details-section').hide();
+        $('#guest-details-container').empty();
+    }
+});
+
+// Regenerate fields when guest count changes (if section is visible)
+$('input[name="extras"]').on('input', function () {
+    if ($('#guest-details-section').is(':visible')) {
+        var guestCount = parseInt($(this).val(), 10) || 1;
+        generateGuestDetailFields(guestCount);
+    }
+});
+
 
 // Place this outside of $(document).ready(...)
 function alert_markup(alert_type, msg) {
