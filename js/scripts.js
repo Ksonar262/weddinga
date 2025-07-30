@@ -234,7 +234,7 @@ $('#rsvp-form').on('submit', function (e) {
     // Send data to Google Apps Script for validation and saving
     // Note: $.post with FormData requires processData: false and contentType: false
     $.ajax({
-        url: 'https://script.google.com/macros/s/AKfycbz50-fi_3_H4kIBxU1ufTN7TIXRg8NUFyZiJqWOPh1sAV20yYfstR8Rv-VupcQobC4A/exec',
+        url: 'https://script.google.com/macros/s/AKfycbyOj6igxCzFWGQFyky4xhXHC98Dy3ZJwFLcUYSph0vau1u1YHr5Df1Ub5cD7PKuE96q/exec',
         type: 'POST',
         data: formData,
         processData: false, // Important for FormData
