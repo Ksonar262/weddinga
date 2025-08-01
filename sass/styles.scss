@@ -418,6 +418,59 @@ Invitation Section Styling (Stylized Version)
     padding-bottom: 80px;
 }
 
+#invitation .highlight-date {
+    font-size: 1.75em;
+    color: #a0522d; /* Warm brown tone */
+    font-weight: bold;
+    margin: 30px 0;
+    text-shadow: 1px 1px 3px rgba(160, 82, 45, 0.2);
+}
+
+@media (min-width: 768px) {
+    #invitation .highlight-date {
+        font-size: 2em;
+    }
+}
+
+/* Highlighted date */
+#invitation .highlight-date {
+    font-size: 2em;
+    color: #a0522d;
+    font-weight: bold;
+    margin: 20px 0;
+    text-shadow: 1px 1px 3px rgba(160, 82, 45, 0.2);
+}
+
+/* Invitation line */
+#invitation .invite-text {
+    font-size: 1.2em;
+    color: #444;
+    font-family: 'Lora', serif;
+    margin: 20px 0 40px;
+}
+
+/* Countdown styling */
+#countdown {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: #8b0000;
+    margin-top: 10px;
+}
+
+/* Motif images */
+.motif {
+    width: 60px;
+    opacity: 0.3;
+    margin: 20px auto;
+}
+
+.motif-top,
+.motif-bottom {
+    display: flex;
+    justify-content: center;
+}
+
+
 /* ==========================================================================
 Intro
 ========================================================================== */
@@ -779,71 +832,93 @@ Instagram
 Engagement Pics
 ========================================================================== */
 #eng-pics {
-  img {
-    width: 100%;
-    height: auto;
-    -moz-transition: all 300ms ease-in-out;
-    -o-transition: all 300ms ease-in-out;
-    -webkit-transition: all 300ms ease-in-out;
-    transition: all 300ms ease-in-out;
-  }
-  .img-wrap {
-    position: relative;
-    overflow: hidden;
-    border-radius: 4px;
-  }
-  .img-wrap .overlay {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.5);
-    -moz-transition: all 300ms ease-in-out;
-    -o-transition: all 300ms ease-in-out;
-    -webkit-transition: all 300ms ease-in-out;
-    transition: all 300ms ease-in-out;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-    filter: alpha(opacity=0);
-    opacity: 0; }
-  .img-wrap i {
-    color: #fff;
-    font-size: 15px;
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    top: 6px;
-    right: 6px; }
-  .img-wrap:hover img, .img-wrap:focus img {
-    -moz-transform: scale(1.1);
-    -ms-transform: scale(1.1);
-    -o-transform: scale(1.1);
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1); }
-  .img-wrap:hover .overlay, .img-wrap:focus .overlay {
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=1)";
-    filter: alpha(opacity=1);
-    opacity: 1;
-    z-index: 9; }
-  .diamond {
-    width: 230px;
-    height: 230px;
-    position: absolute;
-    bottom: -145px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 500;
-  }
-  .ring {
-    width: 75px;
-    height: 75px;
-    border-radius: 75px;
-    border: 10px solid #d0d3d4;
-    position: absolute;
-    left: 34%;
-    top: 75%;
-    z-index: -1;
-  }
+  /* Set the background image for the 'wallpaper' effect */
+  background-image: url('../img/crinkled-cardboard-texture.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 50px 0;
+  height: auto; /* Allows the section to grow or shrink based on content */
+  position: relative;
+  overflow: hidden;
 }
 
+#eng-pics .row {
+  display: flex; /* Use Flexbox for easy horizontal spacing */
+  justify-content: space-around; /* Distributes items evenly with space around them */
+  align-items: center; /* Centers items vertically within the row */
+  flex-wrap: wrap; /* Allows items to wrap to the next line on smaller screens */
+  height: auto;
+}
+
+#eng-pics .col-md-2 {
+  flex-grow: 1; /* Allows columns to grow and fill available space */
+  text-align: center; /* Centers the polaroid horizontally within its column */
+}
+
+#eng-pics .img-wrap {
+  position: relative; /* Change from 'absolute' to 'relative' for Flexbox layout */
+  overflow: visible;
+  background-color: #fff; /* Creates the white polaroid border */
+  padding: 10px 10px 40px 10px;
+  margin: 15px auto; /* Centers the polaroid within its flex item */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  display: inline-block;
+  max-width: 250px; /* Adjust max-width to control the size of the polaroids */
+}
+
+/* Make sure the image inside the polaroid fits correctly */
+#eng-pics .img-wrap img {
+  width: 100%;
+  height: auto;
+  -moz-transition: all 300ms ease-in-out;
+  -o-transition: all 300ms ease-in-out;
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+  border-radius: 0; /* Ensures the image itself is not rounded */
+}
+
+/* Individual rotation for each polaroid for a more natural look */
+#eng-pics .col-md-2:nth-child(1) .img-wrap {
+  transform: rotate(-5deg);
+}
+#eng-pics .col-md-2:nth-child(2) .img-wrap {
+  transform: rotate(5deg);
+}
+#eng-pics .col-md-2:nth-child(3) .img-wrap {
+  transform: rotate(-3deg);
+}
+
+/* Hover effects to make the polaroids interactive */
+#eng-pics .img-wrap:hover {
+  transform: rotate(0deg) scale(1.1); /* Straightens and enlarges on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
+/* The overlay effect remains, but now it's relative to the image wrap */
+#eng-pics .img-wrap .overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  transition: all 300ms ease-in-out;
+  opacity: 0;
+  z-index: 2;
+}
+
+#eng-pics .img-wrap:hover .overlay {
+  opacity: 1;
+  z-index: 9;
+}
+
+/* Other elements like diamond and ring are hidden to clean up the section */
+.diamond, .ring {
+    display: none;
+}
 /* ==========================================================================
 Embed video
 ========================================================================== */
@@ -1079,4 +1154,39 @@ body.modal-open {
 }
 .modal-body {
   padding:25px;
+}
+
+/* Petal Fall Base Styles */
+.petal-container {
+    position: fixed;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1; /* Behind content */
+}
+
+.petal {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    animation: fall linear infinite;
+    will-change: transform;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateX(0) translateY(-10%) rotate(0deg);
+        opacity: 0.9;
+    }
+    50% {
+        transform: translateX(var(--drift)) translateY(50vh) rotate(180deg);
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateX(calc(var(--drift) * -1)) translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
 }
