@@ -203,7 +203,7 @@ Navigation
   -moz-border-radius: 1px;
   -webkit-border-radius: 1px;
   border-radius: 1px;
-  background: #fff;
+  background: #ffffff;
   cursor: pointer
 }
 .nav-toggle span:before {
@@ -253,7 +253,9 @@ Hero
 ========================================================================== */
 .hero {
   min-height: 100vh;
-  background: url('../img/main1.jpg') center center;
+  background:
+    linear-gradient(rgba(37, 37, 37, 0.2), rgba(164, 164, 164, 0.4)), 
+    url('../img/hero2.jpg') center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -310,7 +312,7 @@ header {
 
   a {
     // Original: color: $txt-light; text-transform: uppercase; font-size: $nav-font-size;
-    color: #fff; // White color for contrast
+    color: #ffffff; // White color for contrast
     text-transform: uppercase;
     font-family: "Nunito", sans-serif; // Using Nunito for better readability
     font-size: 18px; // Increased font size
@@ -334,7 +336,7 @@ header {
       display: inline;
 
       a {
-        color: #fff; // Ensuring primary nav links are white
+        color: #ffffff; // Ensuring primary nav links are white
         padding-right: 25px;
 
         &:hover {
@@ -351,7 +353,7 @@ header {
       display: inline;
 
       a {
-        color: #fff; // Ensuring member action links are white
+        color: #ffffff; // Ensuring member action links are white
 
         &:hover {
           color: $accent-color; // Retain accent color on hover
@@ -537,15 +539,18 @@ Intro
 }
 
 /* You might want to remove or adjust padding on the #intro p if the textbox has padding */
+/* Update the existing CSS for the text inside the intro section */
 #intro p {
   text-align: center;
-  /* Original margins */
-  /* margin-top: 10px; */
-  /* margin-bottom: 10px; */
-  /* You can set them to 0 or adjust as needed within the new box */
-  margin: 0; /* Or keep a small margin if desired within the box */
-  font-size: 17px;
-  line-height: 1.8;
+  margin: 0;
+  /* Increase font-size for better readability */
+  font-size: 18px; /* Increased from 17px */
+  /* Increase line-height to give more space between lines of text */
+  line-height: 2; /* A good value for improved readability */
+  /* Add a readable font-family if it's not inherited from the body */
+  font-family: "Nunito", sans-serif; /* Example: Use a modern, clean font */
+  /* You can also adjust font-weight if needed, e.g., to 400 or 500 */
+  font-weight: 400; 
 }
 
 /* You might also want to adjust the vertical alignment of the columns if needed.
@@ -695,53 +700,70 @@ Features-stack
 /* ==========================================================================
 .events
 ========================================================================== */
-#events { /* Target the ID for the background image */
-  background-image: url('../img/background2.jpg'); /* Adjust path relative to your CSS file (e.g., '../img/background2.jpg' if CSS is in a 'css' folder) */
-  background-size: cover; /* Ensures the image covers the entire section */
-  background-position: center center; /* Centers the background image */
-  background-repeat: no-repeat; /* Prevents the image from repeating */
-  min-height: 800px; /* Essential: Make sure the section is tall enough to show the background. Adjust this value as needed. */
-  padding-top: 60px; /* Keeps existing top padding, adjust if needed */
-  padding-bottom: 60px; /* Add bottom padding for content spacing */
-
-  /* Optional: You can add overlay effects directly to the section if desired,
-     e.g., a subtle dark overlay to make text stand out more. */
-  /* background-color: rgba(0, 0, 0, 0.2); */ /* Uncomment for a slight dark tint */
-  /* background-blend-mode: overlay; */ /* Often used with background-color for blending */
+#events {
+  background-image: url('../img/background2.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  min-height: 800px;
+  padding-top: 60px;
+  padding-bottom: 60px;
 }
 
-.events { /* This targets the class, where your column styles are */
+.events {
   .leftcol {
     padding-right: 100px;
-    border-right: solid 1px $keyline-color; /* Assuming $keyline-color is defined */
+    border-right: solid 1px $keyline-color;
   }
   .rightcol {
     padding-left: 100px;
   }
 
+  /* This is the key change for the time span */
   .time {
-    font-size: 13px;
+    font-size: 16px; /* Increased font size */
     font-style: italic;
     text-transform: lowercase;
-    color: $txt-primary; /* Assuming $txt-primary is defined */
+    color: #555; /* A darker color for better contrast */
+    font-weight: 600; /* Made it a bit bolder to stand out */
+    display: block; /* Makes the time appear on its own line */
+    margin-top: 5px; /* Adds a little space between the title and time */
   }
 }
 
-/* New CSS for the cream text box overlay (if not already in your CSS) */
 .text-box-overlay {
-    background-color: rgba(255, 255, 240, 0.9); /* Cream color with 90% opacity */
-    padding: 30px; /* Padding inside the box */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
-    margin-bottom: 20px; /* Adds space between the event boxes */
+  background-color: rgba(255, 255, 240, 0.9);
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
 }
 
-/* Optional: Adjustments for readability within the text boxes */
-.text-box-overlay p,
-.text-box-overlay h5,
-.text-box-overlay strong,
-.text-box-overlay span.time {
-    color: #333; /* Darker text for readability against the cream background */
+/* New and modified styles for readability and emphasis */
+.text-box-overlay p strong {
+    font-size: 24px; /* Much larger font size for the date */
+    font-weight: 700; /* Extra bold */
+    color: rgb(220, 92, 0); /* Use your main accent color to make it pop */
+    font-family: "Nunito", sans-serif; /* A nice, clean font */
+    display: block; /* Ensures the date is on its own line */
+    margin-bottom: 10px; /* Space between the date and the event title */
+}
+
+.text-box-overlay h5 {
+    font-size: 28px; /* Larger font size for the event title */
+    font-weight: 700; /* Extra bold */
+    color: #333; /* Darker color for high contrast */
+    text-transform: uppercase; /* Optional: Makes the titles all caps for a stylized look */
+    font-family: "Nunito", sans-serif;
+    margin-bottom: 5px; /* Adjust spacing below the title */
+}
+
+/* This is a new rule for the descriptions to ensure they are readable */
+.text-box-overlay p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
+    margin-top: 15px; /* Adds some space below the title/time combo */
 }
 /* ==========================================================================
 .blog
