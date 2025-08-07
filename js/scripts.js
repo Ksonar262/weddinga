@@ -226,24 +226,7 @@ $('#rsvp-form').on('submit', function (e) {
     });
     console.log("JS Log: 3. Data being sent to Apps Script:", formDataObject);
 
-    // Aadhaar validation block
-    if ($('#guest-details-section').is(':visible')) {
-        var allValid = true;
-        $('input[name^="guest_"][name$="_aadhaar"]').each(function () {
-            var aadhaar = $(this).val().trim();
-            if (!isValidAadhaar(aadhaar)) {
-                allValid = false;
-                $(this).addClass('is-invalid');
-                alert("Please enter a valid 12-digit Aadhaar number for each guest.");
-            return false;
-            } else {
-                $(this).removeClass('is-invalid');
-            }
-        });
-
-    
-}
-
+    // Aadhaar validation block removed
 
     $('#alert-wrapper').html(alert_markup('info', '<strong>Just a sec!</strong> We are saving your details.'));
 
@@ -269,9 +252,18 @@ $('#rsvp-form').on('submit', function (e) {
     });
 });
 
+// NEW: Event listener to refresh the page after the modal is hidden
+$('#rsvp-modal').on('hidden.bs.modal', function () {
+    location.reload();
+});
 
 
-// Generate guest detail fields
+function isValidAadhaar(aadhaar) {
+    var aadhaarPattern = /^[0-9]{12}$/;
+    return aadhaarPattern.test(aadhaar);
+}
+
+
 function generateGuestDetailFields(count) {
     var container = $('#guest-details-container');
     container.empty();
@@ -288,7 +280,7 @@ function generateGuestDetailFields(count) {
                     '<option value="Female">Female</option>' +
                     '<option value="Other">Other</option>' +
                 '</select>' +
-                '<input type="text" name="guest_' + i + '_aadhaar" placeholder="Travel ID Number(Aadhaar, PAN etc.)" class="form-control" required />' +
+                '<input type="text" name="guest_' + i + '_aadhaar" placeholder="Travel-ID (Aadhar, PAN etc.)" class="form-control" required />' +
             '</div>'
         );
     }
