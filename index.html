@@ -394,134 +394,129 @@
 </section>
 
 <section class="rsvp text-center" id="rsvp">
-
-    <div id="rsvp-modal" class="modal fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span>
-                    </button>
-                    <div class="section-padding">
-                        <h3>Thank you!</h3>
-                        <p>We are glad to see you join us on our big day.</p>
-                        <div id="add-to-cal"></div>
-                    </div>
-                </div>
-            </div>
+  <!-- Success Modal -->
+  <div id="rsvp-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span>&times;</span>
+          </button>
+          <div class="section-padding">
+            <h3>Thank you!</h3>
+            <p>We are glad to see you join us on our big day.</p>
+            <div id="add-to-cal"></div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 
-        <div id="error-modal" class="modal fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-sm" role="document">
-            <div class="modal-content">
-                <div class="modal-body text-center">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span>&times;</span>
-                    </button>
-                    <h4 class="modal-title" style="color: red; margin-top: 20px;">Error</h4>
-                    <p id="error-message-text" style="font-size: 16px;"></p>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" style="margin-top: 10px;">OK</button>
-                </div>
-            </div>
+  <!-- Error Modal -->
+  <div id="error-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span>&times;</span>
+          </button>
+          <h4 class="modal-title" style="color: red; margin-top: 20px;">Error</h4>
+          <p id="error-message-text" style="font-size: 16px;"></p>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" style="margin-top: 10px;">OK</button>
         </div>
+      </div>
     </div>
+  </div>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <h3>आमच्या आनंदात सहभागी व्हा<br><span style="font-size: 2rem;">(Come, join our happiness)</span></h3>
-                <p>To help us plan your travel, stay, and ensure every moment is perfect, please confirm your participation by sharing details as follows </p>
-                <form id="rsvp-form" class="rsvp-form"
-                      action=""
-                      method="POST">
-                    <div class="row">
-                        <div class="col-md-6 col-sm-6">
-                            <div class="form-input-group">
-                                <i class="fa fa-envelope"></i><input type="email" name="email" class=""
-                                                                     placeholder="Your email"
-                                                                     required>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-6">
-                            <div class="form-input-group">
-                                <i class="fa fa-user"></i><input name="name" class=""
-                                                                 placeholder="Your name"
-                                                                 required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 col-sm-6">
-                            <div class="form-input-group">
-                                <i class="fa fa-users"></i><input type="number" name="extras" class="" min="0"
-                                                                  max="10"
-                                                                  placeholder="Husband/Wife or kids"
-                                                                  required>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-6">
-                            <div class="form-input-group">
-                                <i class="fa fa-key"></i><input type="number" name="invite_code" id="invite_code"
-                                                                class="" min="0"
-                                                                placeholder="Invite code"
-                                                                required>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="row">
-                        <div class="col-md-6 col-sm-6">
-                             <label>
-                                Join us in the वरात (જાન) as we begin the journey from Ahmedabad—your presence will mean a lot to us!
-                                <input type="checkbox" id="travel-checkbox">
-                            </label>
-                        </div>
-                    </div>
+  <!-- Form Container -->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h3>आमच्या आनंदात सहभागी व्हा<br><span style="font-size: 2rem;">(Come, join our happiness)</span></h3>
+        <p>
+          To help us plan your travel, stay, and ensure every moment is perfect, please confirm your participation by sharing details as follows
+        </p>
 
-                    <div class="row">
-                        <div class="col-md-12 text-center">
-                            <span class="option-separator">OR</span>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6 col-sm-6">
-                            <label>
-                                Do you prefer to join us directly at Pune and stay with us?
-                                <input type="checkbox" id="stay-checkbox">
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-md-12 text-center" id="travel-stay-error-container">
-                            </div>
-                    </div>
-                    
-                    <div id="guest-details-section" style="display: none; margin-top: 20px;">
-                        <h4>Guest Details for Stay/Travel</h4>
-                            <div id="guest-details-container"></div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12" id="alert-wrapper"></div>
-                    </div>
-                    
-                    <div class="reception-tile">
-                        <label for="reception-rsvp">
-                            RSVP for reception in Ahmedabad
-                            <input type="checkbox" id="reception-rsvp">
-                        </label>
-                    </div>
-
-                    <button class="btn-fill rsvp-btn">
-                        Yes, that's me!
-                    </button>
-                </form>
+        <form id="rsvp-form" class="rsvp-form" action="" method="POST">
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <div class="form-input-group">
+                <i class="fa fa-envelope"></i>
+                <input type="email" name="email" placeholder="Your email" required>
+              </div>
             </div>
-        </div>
+            <div class="col-md-6 col-sm-6">
+              <div class="form-input-group">
+                <i class="fa fa-user"></i>
+                <input type="text" name="name" placeholder="Your name" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <div class="form-input-group">
+                <i class="fa fa-users"></i>
+                <input type="number" name="extras" min="0" max="10" placeholder="Husband/Wife or kids" required>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <div class="form-input-group">
+                <i class="fa fa-key"></i>
+                <input type="number" name="invite_code" placeholder="Invite code" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-checkbox-group">
+                <label for="travel-checkbox">
+                  <input type="checkbox" id="travel-checkbox" name="travel-checkbox">
+                  Join us in the वरात (જાન) as we begin the journey from Ahmedabad—your presence will mean a lot to us!
+                </label>
+              </div>
+            </div>
+            <div class="col-md-12 text-center">
+              <span class="option-separator">OR</span>
+            </div>
+            <div class="col-md-12">
+              <div class="form-checkbox-group">
+                <label for="stay-checkbox">
+                  <input type="checkbox" id="stay-checkbox" name="stay-checkbox">
+                  Do you prefer to join us directly at Pune and stay with us?
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 text-center" id="travel-stay-error-container"></div>
+          </div>
+
+          <div id="guest-details-section" style="display: none; margin-top: 20px;">
+            <h4>Guest Details for Stay/Travel</h4>
+            <div id="guest-details-container"></div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12" id="alert-wrapper"></div>
+          </div>
+
+          <div class="reception-tile">
+            <label for="reception-rsvp">
+              <input type="checkbox" id="reception-rsvp" name="reception-rsvp">
+              RSVP for reception in Ahmedabad
+            </label>
+          </div>
+
+          <button class="btn-fill rsvp-btn" type="submit">Yes, that's me!</button>
+        </form>
+      </div>
     </div>
+  </div>
 </section>
+
 
 <footer>
     <div class="container">
