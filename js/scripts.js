@@ -241,9 +241,7 @@ $('#rsvp-form').on('submit', function (e) {
             }
         });
 
-    if (!allValid) {
-        return; // Prevent form from submitting
-    }
+    
 }
 
 
@@ -271,10 +269,6 @@ $('#rsvp-form').on('submit', function (e) {
     });
 });
 
-function isValidAadhaar(aadhaar) {
-    var aadhaarPattern = /^[0-9]{12}$/;
-    return aadhaarPattern.test(aadhaar);
-}
 
 
 // Generate guest detail fields
@@ -294,7 +288,7 @@ function generateGuestDetailFields(count) {
                     '<option value="Female">Female</option>' +
                     '<option value="Other">Other</option>' +
                 '</select>' +
-                '<input type="text" name="guest_' + i + '_aadhaar" placeholder="Aadhaar Number" class="form-control" required />' +
+                '<input type="text" name="guest_' + i + '_aadhaar" placeholder="Travel ID Number(Aadhaar, PAN etc.)" class="form-control" required />' +
             '</div>'
         );
     }

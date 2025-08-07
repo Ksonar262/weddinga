@@ -122,12 +122,12 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center">            
-                <h3>We are getting married! ✨</h3>
+                <h3>We are getting married!</h3>
                 <p class="highlight-date">
-                    <strong>1<sup>st</sup> – 3<sup>rd</sup> December 2025</strong> | Pune, India
+                    <strong>1<sup>st</sup> – 3<sup>rd</sup> December 2025</strong> | Ahmedabad & Pune
                 </p>
                 <p class="invite-text">
-                    Three magical days, one beautiful union — and it wouldn’t be complete without you. 💍🎉
+                    Three magical days, one beautiful union — and it wouldn’t be complete without you. 
                 </p>
 
                 <!-- Countdown Timer -->
@@ -213,7 +213,7 @@
                 <div class="text-box-overlay">
                     <div class="wp6">
                         <p><strong>3rd December</strong></p>
-                        <h5>Reception <span class="time">Ahmedabad</span></h5>
+                        <h5>Reception <span class="time">Ahmedabad | 7PM onwards</span></h5>
                         <p>Join us for a grand celebration to mark our marriage. This is an evening to share our joy, enjoy delicious food and music, and create lasting memories with all our loved ones.</p>
                     </div>
                 </div>
@@ -407,9 +407,24 @@
                         <div id="add-to-cal"></div>
                     </div>
                 </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+            </div>
+        </div>
+    </div>
+
+        <div id="error-modal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span>&times;</span>
+                    </button>
+                    <h4 class="modal-title" style="color: red; margin-top: 20px;">Error</h4>
+                    <p id="error-message-text" style="font-size: 16px;"></p>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" style="margin-top: 10px;">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="container">
         <div class="row">
@@ -453,15 +468,36 @@
                             </div>
                         </div>
                     </div>
+                
                     <div class="row">
                         <div class="col-md-6 col-sm-6">
-                            <label><input type="checkbox" id="stay-checkbox"> Will you travel with us from Ahmedabad?</label>
-                        </div>
-                        <div class="col-md-6 col-sm-6">
-                            <label><input type="checkbox" id="travel-checkbox"> Will you directly arrive in Pune and stay with us?</label>
+                             <label>
+                                Join us in the वरात (જાન) as we begin the journey from Ahmedabad—your presence will mean a lot to us!
+                                <input type="checkbox" id="travel-checkbox">
+                            </label>
                         </div>
                     </div>
 
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <span class="option-separator">OR</span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <label>
+                                Do you prefer to join us directly at Pune and stay with us?
+                                <input type="checkbox" id="stay-checkbox">
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-12 text-center" id="travel-stay-error-container">
+                            </div>
+                    </div>
+                    
                     <div id="guest-details-section" style="display: none; margin-top: 20px;">
                         <h4>Guest Details for Stay/Travel</h4>
                             <div id="guest-details-container"></div>
@@ -470,9 +506,16 @@
                     <div class="row">
                         <div class="col-md-12" id="alert-wrapper"></div>
                     </div>
+                    
+                    <div class="reception-tile">
+                        <label for="reception-rsvp">
+                            RSVP for reception in Ahmedabad
+                            <input type="checkbox" id="reception-rsvp">
+                        </label>
+                    </div>
+
                     <button class="btn-fill rsvp-btn">
-                        Yes,
-                        that's me!
+                        Yes, that's me!
                     </button>
                 </form>
             </div>
@@ -577,7 +620,32 @@
     setInterval(createPetal, petalInterval);
 </script>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const travelCheckbox = document.getElementById('travel-checkbox');
+        const stayCheckbox = document.getElementById('stay-checkbox');
+        const errorMessageText = document.getElementById('error-message-text');
 
+        function validateCheckboxes() {
+            if (travelCheckbox.checked && stayCheckbox.checked) {
+                // Set the error message text
+                errorMessageText.innerText = "Please select only one.";
+                // Show the custom modal
+                $('#error-modal').modal('show');
+                
+                // Uncheck the box that was just clicked
+                if (this.id === 'travel-checkbox') {
+                    stayCheckbox.checked = false;
+                } else {
+                    travelCheckbox.checked = false;
+                }
+            }
+        }
+
+        travelCheckbox.addEventListener('change', validateCheckboxes);
+        stayCheckbox.addEventListener('change', validateCheckboxes);
+    });
+</script>
 
 </body>
 </html>

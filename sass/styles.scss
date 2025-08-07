@@ -1025,10 +1025,38 @@ RSVP form
     text-align: center;
   }
 
+  .option-separator {
+    font-size: 1.5 em;
+    font-weight: 700;
+    color: #7c1801;
+    display: block;
+    margin: 15px 0;
+    text-align: center;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  }
+
+  .reception-tile {
+    background-color: #f0f0f0; 
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 30px 0;
+    text-align: left;
+    font-size: 1.1em;
+  }
+
+  .reception-tile label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
   .rsvp-form {
     max-width: 600px;
     margin: 0 auto;
-
+    
     .rsvp-btn {
       padding: 15px 0;
       border-radius: 25px;
@@ -1128,6 +1156,47 @@ RSVP form
       margin-top: -10px;
       margin-bottom: 10px;
     }
+  }
+}
+
+/* --- Media Query for Mobile Phones (screens up to 767px wide) --- */
+@media (max-width: 767px) {
+  .rsvp {
+    /* Reduce the top and bottom padding for more compact spacing */
+    padding: 30px 15px 60px;
+  }
+
+  .rsvp h3 {
+    /* Slightly reduce the main heading size */
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+
+  .rsvp p {
+    /* Reduce the margin on the intro paragraph */
+    margin-bottom: 20px;
+  }
+  
+  .rsvp .rsvp-form .form-input-group {
+    /* Reduce the margin between form fields */
+    margin-bottom: 15px;
+  }
+  
+  .rsvp .option-separator {
+    /* Reduce the margin around the 'OR' separator */
+    margin: 20px 0;
+    font-size: 1.2em; /* Slightly smaller font for mobile */
+  }
+  
+  .rsvp .reception-tile {
+    /* Reduce the margin for the reception tile */
+    margin: 20px 0;
+    padding: 15px; /* Reduce padding inside the tile */
+  }
+
+  .rsvp .rsvp-form .rsvp-btn {
+    /* Adjust button padding if needed */
+    padding: 12px 0;
   }
 }
 
