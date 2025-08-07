@@ -1029,11 +1029,20 @@ RSVP Section
     text-align: center;
   }
 
+  /* --- New Style for Checkbox Container --- */
+  .rsvp-options-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Space between items */
+    margin: 30px 0;
+    flex-wrap: wrap; /* Allows items to wrap on small screens */
+  }
+
   .option-separator {
     font-size: 1.5em;
     font-weight: 700;
     color: darken($accent-color, 15%);
-    margin: 20px 0;
     text-align: center;
     letter-spacing: 1px;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
@@ -1119,7 +1128,7 @@ RSVP Section
       border: 1px solid $keyline-color;
       padding: 15px;
       border-radius: 6px;
-      margin-bottom: 15px;
+      margin: 0; /* Resetting margin for the flexbox container */
 
       label {
         display: flex;
@@ -1161,71 +1170,46 @@ RSVP Section
   }
 }
 
-/* Responsive */
 @media (max-width: 767px) {
   .rsvp {
     padding: 30px 15px 60px;
-
-    h3 {
-      font-size: 24px;
-    }
-
-    p {
-      margin-bottom: 20px;
-    }
-
-    .rsvp-form {
-      padding: 20px;
-
-      .form-input-group {
-        margin-bottom: 15px;
-      }
-
-      .rsvp-btn {
-        padding: 12px;
-      }
-
-      .form-checkbox-group label {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
-
-    .option-separator {
-      font-size: 1.2em;
-    }
   }
-}
 
-/* --- Responsive Tweaks --- */
-@media (max-width: 767px) {
-  .rsvp {
-    padding: 40px 15px 60px;
+  .rsvp h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
 
-    h3 {
-      font-size: 24px;
+  .rsvp p {
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+
+  .rsvp-options-container {
+      flex-direction: column; /* Stack items vertically on mobile */
+      gap: 15px;
+      margin: 20px 0;
+  }
+  
+  .rsvp .option-separator {
+    margin: 5px 0;
+    font-size: 1.2em;
+  }
+
+  .rsvp .rsvp-form {
+    padding: 20px;
+
+    .form-input-group {
+      margin-bottom: 15px;
     }
 
-    p {
-      font-size: 15px;
-      margin-bottom: 20px;
+    .rsvp-btn {
+      padding: 12px;
     }
 
-    .rsvp-form {
-      padding: 20px;
-
-      .form-input-group {
-        margin-bottom: 15px;
-      }
-
-      .rsvp-btn {
-        padding: 12px;
-      }
-    }
-
-    .option-separator {
-      margin: 15px 0;
-      font-size: 1.2em;
+    .form-checkbox-group label {
+      flex-direction: column;
+      align-items: flex-start;
     }
 
     .reception-tile {
@@ -1234,49 +1218,6 @@ RSVP Section
     }
   }
 }
-
-
-/* --- Media Query for Mobile Phones (screens up to 767px wide) --- */
-@media (max-width: 767px) {
-  .rsvp {
-    /* Reduce the top and bottom padding for more compact spacing */
-    padding: 30px 15px 60px;
-  }
-
-  .rsvp h3 {
-    /* Slightly reduce the main heading size */
-    font-size: 24px;
-    margin-bottom: 15px;
-  }
-
-  .rsvp p {
-    /* Reduce the margin on the intro paragraph */
-    margin-bottom: 20px;
-  }
-  
-  .rsvp .rsvp-form .form-input-group {
-    /* Reduce the margin between form fields */
-    margin-bottom: 15px;
-  }
-  
-  .rsvp .option-separator {
-    /* Reduce the margin around the 'OR' separator */
-    margin: 20px 0;
-    font-size: 1.2em; /* Slightly smaller font for mobile */
-  }
-  
-  .rsvp .reception-tile {
-    /* Reduce the margin for the reception tile */
-    margin: 20px 0;
-    padding: 15px; /* Reduce padding inside the tile */
-  }
-
-  .rsvp .rsvp-form .rsvp-btn {
-    /* Adjust button padding if needed */
-    padding: 12px 0;
-  }
-}
-
 /* ==========================================================================
 Footer
 ========================================================================== */
