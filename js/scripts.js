@@ -278,7 +278,6 @@ function generateGuestDetailFields(count) {
                     '<option value="">Select Gender</option>' +
                     '<option value="Male">Male</option>' +
                     '<option value="Female">Female</option>' +
-                    '<option value="Other">Other</option>' +
                 '</select>' +
                 '<input type="text" name="guest_' + i + '_aadhaar" placeholder="Travel-ID (Aadhar, PAN etc.)" class="form-control" required />' +
             '</div>'
