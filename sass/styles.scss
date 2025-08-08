@@ -252,9 +252,9 @@ Navigation
 Hero
 ========================================================================== */
 .hero {
-  min-height: 100vh;
+  //min-height: 100vh;
    // Use a solid color to fill any empty space created by `contain`
-  background-color: #6d6d6d;
+  background-color: #e1decd;
   
   background-image: url('../img/hero3.png');
   background-position: center center;
@@ -516,7 +516,7 @@ Intro
   /* Specific height for kat.png to make it slightly taller */
   .wp2,
   .wp9 {
-    height: 480px;
+    height: 550px;
   }
 
   /* You might also want to adjust the vertical alignment of the columns if needed. */
