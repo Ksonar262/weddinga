@@ -253,14 +253,20 @@ Hero
 ========================================================================== */
 .hero {
   min-height: 100vh;
-  background:
-    //linear-gradient(rgba(37, 37, 37, 0.2), rgba(164, 164, 164, 0.4)), 
-    url('../img/hero3.png') center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+   // Use a solid color to fill any empty space created by `contain`
+  background-color: #6d6d6d;
+  
+  background-image: url('../img/hero3.png');
+  background-position: center center;
+  
+  // New property to ensure the entire image is visible without cropping
+  background-size: contain;
+  
+  // Prevent the image from repeating in the empty space
+  background-repeat: no-repeat;
+  
   position: relative;
+
 
   /*.rsvp-btn {
     position: absolute;
@@ -289,6 +295,13 @@ Hero
     margin-bottom: 12%;
   }
 }
+
+@media (max-width: 576px) {
+  .hero {
+    background-position: center top; /* Moves the background image up */
+  }
+}
+
 .navigation {
   transition: all 300ms ease-in-out;
   position: fixed;
@@ -477,11 +490,47 @@ Invitation Section Styling (Stylized Version)
 Intro
 ========================================================================== */
 
+#intro {
+  padding-top: 40px;
+  background-image: url('../img/background1.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  min-height: 700px;
+  padding-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 100%;
+    height: 450px;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  /* Specific height for kat.png to make it slightly taller */
+  .wp2,
+  .wp9 {
+    height: 480px;
+  }
+
+  /* You might also want to adjust the vertical alignment of the columns if needed. */
+  .row {
+    align-items: center;
+  }
+}
+
 .intro span.icon {
   font-size: 40px;
-  color: $accent-color; /* Assuming $accent-color is defined elsewhere (Sass/SCSS) */
+  color: $accent-color;
   font-weight: bold;
 }
+
 .intro-icon {
   display: inline-block;
   vertical-align: top;
@@ -489,74 +538,28 @@ Intro
   margin-right: 20px;
   width: 60px;
 }
+
 .intro-content {
   display: inline-block;
   width: 90%;
 }
 
-#intro {
-  /* Existing padding-top */
-  padding-top: 40px;
-
-  /* NEW: Background Image Properties */
-  background-image: url('../img/background1.jpg'); /* Adjust path if your CSS file is in a subfolder, e.g., '../img/background1.jpg' */
-  background-size: cover; /* Ensures the image covers the entire section */
-  background-position: center center; /* Centers the background image */
-  background-repeat: no-repeat; /* Prevents the image from repeating */
-
-  /* Optional: Ensure enough height to showcase the background image */
-  min-height: 700px; /* Adjust this value as needed to make the section tall enough */
-
-  /* Optional: Add bottom padding to ensure content doesn't stick to the bottom edge of the background */
-  padding-bottom: 40px; /* Example, adjust to give space below content */
-
-  /* Flexbox properties to help center content vertically within the section, if desired */
-  display: flex;
-  flex-direction: column; /* Arrange content vertically */
-  justify-content: center; /* Center content vertically */
-  align-items: center; /* Center content horizontally */
-
-  img {
-    width: 100%; /* Keep 100% to fill the column width responsively */
-    height: 450px; /* Set a fixed height for consistent image size */
-    object-fit: contain; /* Ensures the image covers the area without distortion */
-    border-radius: 8px; /* Add some rounded corners to the images */
-    /*box-shadow: 0 4px 10px rgba(0,0,0,0.1); */ /* Add a subtle shadow */
-    margin-top: 10px; /* Add some top margin to push them down slightly from the top of their column */
-    margin-bottom: 10px; /* Add some bottom margin for spacing */
-    display: block; /* Ensure images behave as block elements for margin to apply correctly */
-  }
-}
-
-/* Add this new CSS rule, ideally near your #intro styles */
 .text-box-overlay {
-    background-color: rgba(255, 255, 240, 0.9); /* Cream color (f8f8e7) with 90% opacity */
-    padding: 30px; /* Add some padding inside the box */
-    border-radius: 8px; /* Slightly rounded corners for a softer look */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
-    margin-top: 20px; /* Adjust margin if needed to separate from content above/below */
-    margin-bottom: 20px;
+  background-color: rgba(255, 255, 240, 0.9);
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-/* You might want to remove or adjust padding on the #intro p if the textbox has padding */
-/* Update the existing CSS for the text inside the intro section */
 #intro p {
   text-align: center;
   margin: 0;
-  /* Increase font-size for better readability */
-  font-size: 18px; /* Increased from 17px */
-  /* Increase line-height to give more space between lines of text */
-  line-height: 2; /* A good value for improved readability */
-  /* Add a readable font-family if it's not inherited from the body */
-  font-family: "Nunito", sans-serif; /* Example: Use a modern, clean font */
-  /* You can also adjust font-weight if needed, e.g., to 400 or 500 */
+  font-size: 18px;
+  line-height: 2;
+  font-family: "Nunito", sans-serif;
   font-weight: 400; 
-}
-
-/* You might also want to adjust the vertical alignment of the columns if needed.
-   For example, to make the image columns align better with the text: */
-#intro .row {
-    align-items: center; /* Vertically centers content within the row */
 }
 
 /* ==========================================================================
