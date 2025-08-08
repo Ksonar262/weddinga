@@ -252,21 +252,15 @@ Navigation
 Hero
 ========================================================================== */
 .hero {
-  min-height: 80vh;
-   // Use a solid color to fill any empty space created by `contain`
-  background-color: #e1decd;
-  
-  background-image: url('../img/hero3.png');
-  background-position: center center;
-  
-  // New property to ensure the entire image is visible without cropping
-  background-size: contain;
-  
-  // Prevent the image from repeating in the empty space
-  background-repeat: no-repeat;
-  
+  min-height: 100vh;
+  background:
+    //linear-gradient(rgba(37, 37, 37, 0.2), rgba(164, 164, 164, 0.4)), 
+    url('../img/hero4.jpg') center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   position: relative;
-
 
   /*.rsvp-btn {
     position: absolute;
@@ -296,11 +290,6 @@ Hero
   }
 }
 
-@media (max-width: 576px) {
-  .hero {
-    background-position: center top; /* Moves the background image up */
-  }
-}
 
 .navigation {
   transition: all 300ms ease-in-out;
@@ -516,7 +505,7 @@ Intro
   /* Specific height for kat.png to make it slightly taller */
   .wp2,
   .wp9 {
-    height: 550px;
+    height: 480px;
   }
 
   /* You might also want to adjust the vertical alignment of the columns if needed. */
