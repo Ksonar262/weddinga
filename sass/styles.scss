@@ -254,8 +254,8 @@ Hero
 .hero {
   min-height: 100vh;
   background:
-    linear-gradient(rgba(37, 37, 37, 0.2), rgba(164, 164, 164, 0.4)), 
-    url('../img/hero2.jpg') center center;
+    //linear-gradient(rgba(37, 37, 37, 0.2), rgba(164, 164, 164, 0.4)), 
+    url('../img/hero3.png') center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -1008,39 +1008,40 @@ $accent-color: #a0522d;
 $form-placeholder: #aaa;
 
 /* ==========================================================================
-RSVP Section
+RSVP Section - Refined Wedding Theme
 ========================================================================== */
 .rsvp {
-  padding: 60px 20px 140px;
-  background-color: $rsvp-bg;
+  padding: 40px 10px 80px;
+  background: linear-gradient(180deg, lighten($rsvp-bg, 5%) 0%, $rsvp-bg 100%);
 
   h3 {
     font-family: 'Playfair Display', serif;
-    font-size: 28px;
+    font-size: 32px;
+    letter-spacing: 0.5px;
     color: $accent-color;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     text-align: center;
   }
 
   p {
     font-size: 16px;
-    color: #5a5a5a;
-    margin-bottom: 30px;
+    color: #6b5e56; // soft warm gray
+    margin-bottom: 20px;
     text-align: center;
   }
 
-  /* --- New Style for Checkbox Container --- */
+  /* --- RSVP Travel/Stay Options --- */
   .rsvp-options-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px; /* Space between items */
-    margin: 30px 0;
-    flex-wrap: wrap; /* Allows items to wrap on small screens */
+    gap: 5px;
+    margin: 15px 0;
+    flex-wrap: wrap;
   }
 
   .option-separator {
-    font-size: 1.5em;
+    font-size: 1.2em;
     font-weight: 700;
     color: darken($accent-color, 15%);
     text-align: center;
@@ -1048,45 +1049,51 @@ RSVP Section
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
   }
 
+  /* --- RSVP Form Container --- */
   .rsvp-form {
     max-width: 650px;
     margin: 0 auto;
     background: white;
     border-radius: 12px;
-    padding: 30px;
+    padding: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    animation: fadeInUp 0.6s ease both;
 
+    /* --- RSVP Button --- */
     .rsvp-btn {
       padding: 14px;
       border-radius: 30px;
       width: 100%;
       font-size: 16px;
       font-weight: bold;
-      background-color: $accent-color;
+      background: linear-gradient(45deg, lighten($accent-color, 10%), $accent-color);
       color: white;
       border: none;
-      transition: background-color 0.3s ease;
+      transition: all 0.3s ease;
 
       &:hover {
-        background-color: darken($accent-color, 10%);
+        background: linear-gradient(45deg, $accent-color, darken($accent-color, 10%));
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba($accent-color, 0.3);
         cursor: pointer;
       }
     }
 
+    /* --- Input Groups --- */
     .form-input-group {
       width: 100%;
-      height: 55px;
-      margin-bottom: 20px;
+      height: 45px;
+      margin-bottom: 10px;
       border: 1px solid $keyline-color;
       border-radius: 6px;
-      background: white;
+      background: #fffdfb;
       position: relative;
       transition: border 0.3s ease, box-shadow 0.3s ease;
 
       i {
         position: absolute;
         top: 50%;
-        left: 20px;
+        left: 15px;
         transform: translateY(-50%);
         color: $accent-color;
         font-size: 16px;
@@ -1119,16 +1126,21 @@ RSVP Section
 
         &:focus {
           outline: none;
+          box-shadow: 0 0 6px rgba($accent-color, 0.3);
+          border-radius: 6px;
         }
       }
     }
+    
 
+    /* --- Checkbox Groups --- */
     .form-checkbox-group {
       background: #fff8f6;
       border: 1px solid $keyline-color;
-      padding: 15px;
+      padding: 5px;
       border-radius: 6px;
-      margin: 0; /* Resetting margin for the flexbox container */
+      margin: 0;
+      transition: background 0.3s ease;
 
       label {
         display: flex;
@@ -1141,20 +1153,28 @@ RSVP Section
         cursor: pointer;
 
         input[type="checkbox"] {
-          margin-top: 3px;
+          margin-top: 2px;
           transform: scale(1.2);
           accent-color: $accent-color;
         }
       }
+
+      input[type="checkbox"]:checked + span,
+      input[type="checkbox"]:checked ~ label {
+        background: rgba($accent-color, 0.05);
+        border-radius: 4px;
+      }
     }
 
+    /* --- Reception RSVP Tile --- */
     .reception-tile {
-      background-color: #f7f7f7;
-      border: 1px solid $keyline-color;
+      background-color: #fffdfb;
+      border: 1px solid lighten($keyline-color, 20%);
       border-radius: 8px;
-      padding: 20px;
-      margin: 30px 0;
+      padding: 15px;
+      margin: 10px 0;
       font-size: 1.1em;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
 
       label {
         display: flex;
@@ -1170,6 +1190,81 @@ RSVP Section
   }
 }
 
+@media (max-width: 768px) {
+  /*
+  --- General Spacing Adjustments ---
+  */
+  .rsvp {
+    padding: 20px 5px 30px; /* Reduces overall padding on the section */
+  }
+
+  .rsvp-form {
+    padding: 10px; /* Shrinks the padding inside the form container */
+    box-shadow: none; /* Removes the box shadow for a cleaner look on mobile */
+  }
+
+  .rsvp h3 {
+    font-size: 28px; /* Makes the heading a bit smaller */
+    margin-bottom: 10px; /* Reduces bottom margin */
+  }
+
+  .rsvp p {
+    font-size: 15px; /* Slightly smaller text for paragraphs */
+    margin-bottom: 10px; /* Less space below paragraphs */
+  }
+
+  /*
+  --- Form Element Adjustments ---
+  */
+  .rsvp-form .form-input-group {
+    height: 45px; /* Makes input fields shorter */
+    margin-bottom: 5px; /* Reduces space between input fields */
+  }
+
+  .rsvp-form .form-input-group i {
+    left: 15px; /* Moves the icon slightly to the left */
+  }
+
+  .rsvp-form .form-input-group i::after {
+    left: 5px; /* Adjusts the separator line's position */
+  }
+
+  .rsvp-form .form-input-group input {
+    padding-left: 50px; /* Reduces the left padding for the input text */
+    font-size: 14px; /* Smaller font size inside inputs */
+  }
+
+  .rsvp-form .form-checkbox-group {
+    padding: 3px; /* Reduces padding around checkbox groups */
+    margin-bottom: 2px; /* Adds a bit of space below the checkbox group */
+  }
+
+  .rsvp-form .form-checkbox-group label {
+    font-size: 14px; /* Smaller font for checkbox labels */
+  }
+
+  .rsvp-form .reception-tile {
+    padding: 10px; /* Reduces padding inside the reception tile */
+    margin: 5px 0; /* Less space above and below the tile */
+  }
+
+  /*
+  --- Button Adjustments ---
+  */
+  .rsvp-form .rsvp-btn {
+    padding: 12px; /* Makes the button a bit smaller */
+    font-size: 15px; /* Smaller font size on the button */
+  }
+}
+
+
+/* --- Animation --- */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Mobile Adjustments --- */
 @media (max-width: 767px) {
   .rsvp {
     padding: 30px 15px 60px;
@@ -1182,21 +1277,21 @@ RSVP Section
 
   .rsvp p {
     font-size: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
   }
 
   .rsvp-options-container {
-      flex-direction: column; /* Stack items vertically on mobile */
-      gap: 15px;
-      margin: 20px 0;
+    flex-direction: column;
+    gap: 15px;
+    margin: 20px 0;
   }
-  
-  .rsvp .option-separator {
-    margin: 10px 0;
+
+  .option-separator {
+    margin: 5px 0;
     font-size: 1.2em;
   }
 
-  .rsvp .rsvp-form {
+  .rsvp-form {
     padding: 20px;
 
     .form-input-group {
@@ -1205,6 +1300,7 @@ RSVP Section
 
     .rsvp-btn {
       padding: 12px;
+      font-size: 1.1rem;
     }
 
     .form-checkbox-group label {
@@ -1218,6 +1314,7 @@ RSVP Section
     }
   }
 }
+
 /* ==========================================================================
 Footer
 ========================================================================== */
