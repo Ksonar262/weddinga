@@ -1367,6 +1367,23 @@ body.modal-open {
   padding:25px;
 }
 
+@media (max-width: 767px) {
+  #intro .wp8 {
+    width: 100%;
+    max-height: 330px !important; /* force override */
+    height: auto !important;
+    object-fit: contain !important;
+  }
+
+  #intro .wp9 {
+    width: 100%;
+    max-height: 350px !important;
+    height: auto !important;
+    object-fit: contain !important;
+  }
+}
+
+
 /* Petal Fall Base Styles */
 .petal-container {
     position: fixed;
