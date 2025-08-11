@@ -227,6 +227,17 @@ $('#rsvp-form').on('submit', function (e) {
     console.log("JS Log: 3. Data being sent to Apps Script:", formDataObject);
     console.log("JS Log: Phone Number:", formDataObject.phone_number);
 
+    // ... inside the form submit handler
+    var phoneNumber = formData.get('phone_number');
+    var phoneRegex = /^\d{10}$/;
+
+    if (!phoneRegex.test(phoneNumber)) {
+        e.preventDefault(); // Stop form submission
+        $('#alert-wrapper').html(alert_markup('danger', '<strong>Oops!</strong> Please enter a valid 10-digit phone number.'));
+        return; // Exit the function
+    }
+    
+    // ... rest of your code to process formData and make the AJAX call
     // Aadhaar validation block removed
 
     $('#alert-wrapper').html(alert_markup('info', '<strong>Just a sec!</strong> We are saving your details.'));
