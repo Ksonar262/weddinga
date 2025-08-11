@@ -225,6 +225,7 @@ $('#rsvp-form').on('submit', function (e) {
         formDataObject[key] = value;
     });
     console.log("JS Log: 3. Data being sent to Apps Script:", formDataObject);
+    console.log("JS Log: Phone Number:", formDataObject.phone_number);
 
     // Aadhaar validation block removed
 
